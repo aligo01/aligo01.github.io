@@ -1,253 +1,965 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الإلكتروني المبدع</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Engineering Portfolio — White-Label Showcases</title>
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
+            --bg-primary: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --border: #1e293b;
+            --border-hover: #3b82f6;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-rose: #f43f5e;
+            --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Tajawal', Arial, sans-serif;
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f3f5;
-            color: var(--secondary-color);
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: white;
-            transform: skewY(-3deg);
-        }
-
-        header img {
-            width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            padding: 15px 10px;
-            display: block;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
+            min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
-            margin: auto;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 40px 24px;
         }
 
-        .section {
-            background-color: white;
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Domain Section */
+        .domain {
+            margin-bottom: 50px;
+        }
+
+        .domain-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .domain-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
-        .skills-grid {
+        .domain-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .domain-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: auto;
+            font-family: var(--font-mono);
+        }
+
+        /* Project Cards */
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
             gap: 20px;
         }
 
-        .skill-card {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .contact-info {
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .project-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .project-id {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(100, 116, 139, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            gap: 6px;
+            margin-bottom: 16px;
         }
 
-        .contact-item {
-            flex-basis: calc(33.333% - 20px);
-            text-align: center;
-            padding: 20px;
-            background-color: #f8f9fa;
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            font-family: var(--font-mono);
+        }
+
+        .tech-badge.python { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .tech-badge.js { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .tech-badge.ts { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
+        .tech-badge.html { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+        .tech-badge.docker { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .tech-badge.ai { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+        .tech-badge.pwa { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .tech-badge.api { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .tech-badge.bot { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+        .tech-badge.ext { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+        .architecture {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            margin-bottom: 20px;
-            transition: transform 0.3s;
+            padding: 12px;
+            margin-bottom: 16px;
         }
 
-        .contact-item:hover {
-            transform: scale(1.05);
+        .arch-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
         }
 
+        .arch-text {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+
+        .vibe-coding {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px;
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+        }
+
+        .vibe-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .vibe-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .contact-line {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 16px;
+            direction: rtl;
+        }
+
+        .contact-line a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .contact-line a:hover {
+            text-decoration: underline;
+        }
+
+        .ar {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            direction: rtl;
+            unicode-bidi: embed;
+        }
+
+        .ar-block {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            direction: rtl;
+            unicode-bidi: embed;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        .footer-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-item {
-                flex-basis: 100%;
-            }
+            h1 { font-size: 1.8rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .stats-bar { gap: 24px; }
         }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
     </style>
 </head>
 <body>
-    <header>
-        <h1>بسم الله الرحمن الرحيم</h1>
-        <img src="image-removebg-preview (1).png" alt="تكنو علي" class="logo">
-        <h2>أهلا بكم في موقعي الإلكتروني، حيث أستعرض مجموعة متنوعة من مهاراتي وإبداعاتي التقنية</h2>
-        <p>علي شرف الدين يرحب بكم</p>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">نبذة عني</a></li>
-            <li><a href="#skills">مهاراتي</a></li>
-            <li><a href="#contact">التواصل معي</a></li>
-        </ul>
-    </nav>
-
     <div class="container">
-        <section id="about" class="section">
-            <h2>نبذة عني</h2>
-            <p>مهاراتي بفضل الله سبحانه وتعالى: تصميم وقليل من المونتاج تصميم ملفات PDF تفاعلية, استخدام OBS, استخدام بعض خدمات قوقل وبرمجة (أدرس في دورة علوم الحاسوب من أكاديمية حسوب) في الطريق بإذن الله هذا والله أعلم</p>
-        </section>
+        <header>
+            <div class="badge">White-Label Engineering Portfolio <span class="ar">— معرض المشاريع التقنية المجرّد</span></div>
+            <h1>Systems Architecture Showcase <span class="ar">— معرض هندسة الأنظمة</span></h1>
+            <p class="subtitle">A curated collection of production-grade software systems — abstracted from client identity, focused on engineering excellence and architectural patterns.</p>
+            <p class="ar-block">مجموعة منتقاة من أنظمة البرمجيات الإنتاجية — مُجرَّدة عن هوية العميل، تُركّز على التميّز الهندسي والأنماط المعمارية.</p>
+            
+            <p class="contact-line">علي شرف الدين — <a href="mailto:projectorsali@gmail.com">projectorsali@gmail.com</a></p>
+            
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value">13</div>
+                    <div class="stat-label">Production Systems <span class="ar">أنظمة إنتاجية</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Architecture Domains <span class="ar">نطاقات معمارية</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">~9.5K</div>
+                    <div class="stat-label">Lines of Code <span class="ar">سطر كود</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Languages <span class="ar">لغات برمجة</span></div>
+                </div>
+            </div>
+        </header>
 
-        <section id="skills" class="section">
-            <h2>مهاراتي</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>تصميم ملفات</h3>
-                    <ul>
-                        <li>ملفات إرشادية</li>
-                        <li>الخطة التشغيلية</li>
-                        <li>تصميم الجدول</li>
-                        <li>تصميم ملفات PDF تفاعلية</li>
-                    </ul>
+        <!-- DOMAIN 1: AI & Agent Systems -->
+        <section class="domain">
+            <div class="domain-header">
+                <div class="domain-icon" style="background: rgba(139, 92, 246, 0.15);">🧠</div>
+                <h2 class="domain-title">AI & Agent Systems <span class="ar">أنظمة الذكاء الاصطناعي والوكيل</span></h2>
+                <span class="domain-count">2 systems <span class="ar">أنظمة</span></span>
+            </div>
+
+            <div class="project-grid">
+                <!-- nanobot -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Ultra-Lightweight Agent Framework <span class="ar">— إطار عمل وكيل فائق الخفة</span></span>
+                        <span class="project-id">SYS-001</span>
+                    </div>
+                    <p class="project-desc">A minimal-footprint personal AI assistant delivering full agent functionality in ~4,000 lines — 99% smaller than enterprise alternatives. Supports multi-channel communication, tool execution, and scheduled tasks.</p>
+                    <p class="ar-block">مساعد ذكاء اصطناعي شخصي فائق الخفة يقدّم وظائف وكيل كاملة في نحو 4,000 سطر — أصغر بـ 99% من البدائل المؤسسية. يدعم الاتصال متعدد القنوات، وتنفيذ الأدوات، والمهام المجدولة.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge python">Python 3.11+</span>
+                        <span class="tech-badge ai">LiteLLM</span>
+                        <span class="tech-badge ai">Pydantic</span>
+                        <span class="tech-badge api">MCP Protocol</span>
+                        <span class="tech-badge bot">Multi-Channel</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Agent Loop (LLM ↔ Tool Execution)
+├── Provider Registry (12+ LLM backends)
+├── Channel Adapters (Telegram, Discord, WhatsApp, Slack, Email, QQ)
+├── Cron Scheduler + Heartbeat System
+├── MCP Tool Discovery & Execution
+└── Session Manager + Persistent Memory</div>
+                        <div class="ar-block">حلقة الوكيل (نموذج لغوي ↔ تنفيذ أدوات)
+├── سجل المزوّدين (12+ خلفيات نموذج لغوي)
+├── محولات القنوات (تيليجرام، ديسكورد، واتساب، سلاك، بريد، كيو كيو)
+├── جدولة المهام الدورية + نظام النبض
+├── اكتشاف وأدوات MCP
+└── مدير الجلسات + الذاكرة الدائمة</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Core agent loop, provider registry pattern, and multi-channel architecture designed with AI code generation. Rapid prototyping of 12+ LLM provider integrations.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> صُمِّمت حلقة الوكيل الأساسية ونمط سجل المزوّدين والبنية متعددة القنوات باستخدام توليد الكود بالذكاء الاصطناعي. نمذجة سريعة لأكثر من 12 تكامل مع مزوّدي النماذج اللغوية.</span>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3>خدمات Google</h3>
-                    <ul>
-                        <li>العروض التقديمية</li>
-                        <li>الاستبيانات واستخراج البيانات</li>
-                        <li>الجداول الممتدة</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>البرمجة</h3>
-                    <p>بالاستعانة بالذكاء الاصطناعي:</p>
-                    <ul>
-                        <li>البوتات</li>
-                        <li>تصميم البطاقات وإرسالها</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>استخدام OBS</h3>
-                    <p>برنامج يتحكم بما يعرض في الشاشات</p>
-                </div>
-                <div class="skill-card">
-                    <h3>الاستبيانات</h3>
-                    <p>تساهم في تسهيل الإجراءات المعتمدة على إدخال البيانات</p>
-                </div>
-                </div>
-                <div class="skill-card">
-                    <h3>تحليل</h3>
-                    <p>تساهم في تسهيل الإجراءات المعتمدة على إدخال البيانات</p>
+
+                <!-- bridge -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Protocol Translation Gateway <span class="ar">— بوابة ترجمة البروتوكولات</span></span>
+                        <span class="project-id">SYS-002</span>
+                    </div>
+                    <p class="project-desc">High-reliability bridge between proprietary messaging protocols and the agent framework. Handles session persistence, reconnection logic, and real-time message queuing.</p>
+                    <p class="ar-block">جسر عالي الموثوقية بين بروتوكولات الرسائل الخاصة وإطار عمل الوكيل. يتعامل مع استمرارية الجلسات، ومنطق إعادة الاتصال، وطابور الرسائل الفوري.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge ts">TypeScript</span>
+                        <span class="tech-badge js">Node.js 20+</span>
+                        <span class="tech-badge api">Baileys Protocol</span>
+                        <span class="tech-badge api">WebSocket</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">WebSocket Client (Baileys)
+├── Session State Machine
+├── Message Queue (In-Memory)
+├── Auth Token Management
+└── Bridge ↔ Agent IPC (localhost:3001)</div>
+                        <div class="ar-block">عميل WebSocket (Baileys)
+├── آلة حالة الجلسة
+├── طابور الرسائل (في الذاكرة)
+├── إدارة رمز المصادقة
+└── جسر ↔ الوكيل IPC (localhost:3001)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Protocol reverse-engineering assistance and TypeScript type system design accelerated through AI-guided code generation.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> تم تسريع الهندسة العكسية للبروتوكولات وتصميم نظام الأنواع في TypeScript من خلال توليد الكود الموجّه بالذكاء الاصطناعي.</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
-            <h2>التواصل معي</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h3>واتساب</h3>
-                    <a href="https://wa.me/+966148220842" target="_blank">
-                        <p>لتواصل معي<br>عبر.<br>وتساب.</p>
-                    </a>
+        <!-- DOMAIN 2: Communication & Messaging -->
+        <section class="domain">
+            <div class="domain-header">
+                <div class="domain-icon" style="background: rgba(6, 182, 212, 0.15);">📡</div>
+                <h2 class="domain-title">Communication & Messaging Infrastructure <span class="ar">بنية الاتصالات والرسائل</span></h2>
+                <span class="domain-count">3 systems <span class="ar">أنظمة</span></span>
+            </div>
+
+            <div class="project-grid">
+                <!-- Matrix Stack -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Decentralized Messaging Cluster <span class="ar">— خوادم الرسائل اللامركزية</span></span>
+                        <span class="project-id">SYS-003</span>
+                    </div>
+                    <p class="project-desc">Self-hosted Matrix homeserver federation with protocol bridges for WhatsApp and Telegram. Provides end-to-end encrypted cross-platform messaging with data sovereignty.</p>
+                    <p class="ar-block">خادم Matrix مُستضاف ذاتياً مع جسور بروتوكول لواتساب وتيليجرام. يوفّر رسائل مشفرة طرف إلى طرف عبر المنصات مع سيادة البيانات.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge docker">Docker Compose</span>
+                        <span class="tech-badge api">Matrix Synapse</span>
+                        <span class="tech-badge api">Dendrite v2</span>
+                        <span class="tech-badge api">mautrix bridges</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Synapse Homeserver (Port 6167)
+├── SQLite/PostgreSQL Backend
+├── mautrix-whatsapp (Appservice)
+├── mautrix-telegram (Appservice)
+├── Federation API (Matrix Protocol)
+└── Client-Server API (REST + WebSocket)</div>
+                        <div class="ar-block">خادم Synapse الرئيسي (المنفذ 6167)
+├── قاعدة البيانات SQLite/PostgreSQL
+├── mautrix-whatsapp (خدمة تطبيق)
+├── mautrix-telegram (خدمة تطبيق)
+├── واجهة الاتحاد (بروتوكول Matrix)
+└── واجهة العميل-الخادم (REST + WebSocket)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Complex YAML configuration generation, Docker Compose orchestration, and bridge registration workflows optimized through AI assistance.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> توليد تكوين YAML المعقد، وتنسيق Docker Compose، وسير عمل تسجيل الجسور تم تحسينها من خلال المساعدة بالذكاء الاصطناعي.</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <h3>مستقل</h3>
-                    <a href="https://mostaql.com/u/aligame246" target="_blank">
-                        <p>حسابي<br>في منصة.<br>مستقل.</p>
-                    </a>
+
+                <!-- matterbridge -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Cross-Platform Relay Fabric <span class="ar">— نسيج الترحيل بين المنصات</span></span>
+                        <span class="project-id">SYS-004</span>
+                    </div>
+                    <p class="project-desc">Configuration-driven message relay between Telegram and WhatsApp groups. Enables seamless cross-platform communication without requiring users to switch apps.</p>
+                    <p class="ar-block">ترحيل رسائل مُدار بالتكوين بين مجموعات تيليجرام وواتساب. يتيح اتصالاً سلساً بين المنصات دون الحاجة لتبديل التطبيقات.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge api">Matterbridge</span>
+                        <span class="tech-badge bot">Telegram Bot API</span>
+                        <span class="tech-badge api">WhatsApp Web</span>
+                        <span class="tech-badge" style="background: rgba(100,116,139,0.15); color: #94a3b8;">TOML Config</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Gateway Engine
+├── Telegram Account (Bot Token)
+├── WhatsApp Account (Session DB)
+├── Bidirectional Message Transform
+└── Protocol-Agnostic Relay</div>
+                        <div class="ar-block">محرك بوابة الدخول
+├── حساب تيليجرام (رمز الروبوت)
+├── حساب واتساب (قاعدة جلسات)
+├── تحويل رسائل ثنائي الاتجاه
+└── ترحيل مستقل عن البروتوكول</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> TOML configuration schema design and cross-platform message format normalization patterns designed with AI guidance.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> تصميم مخطط تكوين TOML وأنماط تطبيع صيغ الرسائل بين المنصات صُمِّمت بإرشاد الذكاء الاصطناعي.</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <h3>خمسات</h3>
-                    <a href="https://khamsat.com/user/aligo_pro" target="_blank">
-                        <p>حسابي<br>في منصة.<br>خمسات.</p>
-                    </a>
+
+                <!-- g2t_bridge -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Real-Time Meeting Relay <span class="ar">— ترحيل اجتماعات فوري</span></span>
+                        <span class="project-id">SYS-005</span>
+                    </div>
+                    <p class="project-desc">Bridges Google Meet chat messages to Telegram in real-time via a Tampermonkey userscript and Flask relay server. Includes monitoring dashboard with live statistics.</p>
+                    <p class="ar-block">يربط رسائل دردشة Google Meet بتيليجرام في الوقت الفعلي عبر نص مستخدم Tampermonkey وخادم Flask للترحيل. يشمل لوحة مراقبة بإحصائيات مباشرة.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge python">Python</span>
+                        <span class="tech-badge html">Flask</span>
+                        <span class="tech-badge js">Tampermonkey</span>
+                        <span class="tech-badge api">MutationObserver</span>
+                        <span class="tech-badge bot">Telegram Bot API</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Browser (Tampermonkey Userscript)
+├── MutationObserver (DOM Watcher)
+├── POST → Flask Relay Server
+├── Telegram Bot API Forward
+└── Dashboard (Stats + Live Log)</div>
+                        <div class="ar-block">المتصفح (نص مستخدم Tampermonkey)
+├── مراقب الطفرات (مراقبة DOM)
+├── POST → خادم Flask للترحيل
+├── توجيه واجهة بوت تيليجرام
+└── لوحة معلومات (إحصائيات + سجل مباشر)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> DOM scraping strategy, CORS configuration, and real-time dashboard UI designed through iterative AI-assisted development cycles.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> استراتيجية استخراج DOM، وتكوين CORS، وواجهة لوحة المعلومات الفورية صُمِّمت عبر دورة تطوير تعاونية متكررة مع الذكاء الاصطناعي.</span>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- DOMAIN 3: Automation Bots -->
+        <section class="domain">
+            <div class="domain-header">
+                <div class="domain-icon" style="background: rgba(16, 185, 129, 0.15);">🤖</div>
+                <h2 class="domain-title">Automation & Bot Systems <span class="ar">أنظمة الأتمتة والروبوتات</span></h2>
+                <span class="domain-count">4 systems <span class="ar">أنظمة</span></span>
+            </div>
+
+            <div class="project-grid">
+                <!-- remind_taqwa_bot -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Adhan Scheduler & Prayer Bot <span class="ar">— جدولة الأذان وروبوت الصلاة</span></span>
+                        <span class="project-id">SYS-006</span>
+                    </div>
+                    <p class="project-desc">Multi-city prayer time scheduler with centralized approval workflow. Supports Telegram Forum Topics, Aladhan API integration, and interactive admin controls.</p>
+                    <p class="ar-block">مجدول مواقيت صلاة متعدد المدن مع سير عمل موافقة مركزي. يدعم مواضيع منتدى تيليجرام، وتكامل Aladhan API، وأدوات إدارة تفاعلية.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge python">Python</span>
+                        <span class="tech-badge bot">Telegram Bot API</span>
+                        <span class="tech-badge api">Aladhan API</span>
+                        <span class="tech-badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">SQLite</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Telegram Bot (python-telegram-bot)
+├── Approval Gate (Super Admin)
+├── Forum Topic Router (thread_id)
+├── Aladhan API Client (multi-city)
+├── Cron Scheduler (24/7 alerts)
+├── Audit Log (SQLite)
+└── Private Settings Panel</div>
+                        <div class="ar-block">بوت تيليجرام (python-telegram-bot)
+├── بوابة الموافقة (مدير عام)
+├── موزع مواضيع المنتدى (thread_id)
+├── عميل Aladhan API (متعدد المدن)
+├── مجدول المهام (تنبيهات 24/7)
+├── سجل التدقيق (SQLite)
+└── لوحة الإعدادات الخاصة</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Complex scheduling logic, Arabic/English bilingual command system, and Telegram Forum Topic API integration built with AI-assisted code generation.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> منطق الجدولة المعقد، ونظام الأوامر ثنائي اللغة العربية/الإنجليزية، وتكامل واجهة منتدى تيليجرام بُني باستخدام توليد الكود بالذكاء الاصطناعي.</span>
+                    </div>
+                </div>
+
+                <!-- injaz_bot -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Achievement Tracking System <span class="ar">— نظام تتبع الإنجازات</span></span>
+                        <span class="project-id">SYS-007</span>
+                    </div>
+                    <p class="project-desc">Full-stack student progress tracking with Telegram bot backend and Flask web dashboard. Features role-based access, points system, and real-time analytics.</p>
+                    <p class="ar-block">تتبع شامل لتقدم الطلاب مع خلفية بوت تيليجرام ولوحة تحكم ويب Flask. يتميز بصلاحية قائمת على الأدوار، ونظام نقاط، وتحليلات فورية.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge python">Python</span>
+                        <span class="tech-badge html">Flask</span>
+                        <span class="tech-badge bot">Telegram Bot</span>
+                        <span class="tech-badge docker">Docker</span>
+                        <span class="tech-badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">SQLite</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Flask REST API (Web Dashboard)
+├── Telegram Bot (User Interface)
+├── SQLite Database (Students, Points, Tracks)
+├── Role-Based Auth (Admin/Super/Student)
+├── Docker Deployment
+└── Railway CI/CD</div>
+                        <div class="ar-block">واجهة Flask REST API (لوحة ويب)
+├── بوت تيليجرام (واجهة المستخدم)
+├── قاعدة بيانات SQLite (طلاب، نقاط، مسارات)
+├── مصادقة قائمت على الأدوار (مدير/عام/طالب)
+├── نشر عبر Docker
+└── CI/CD عبر Railway</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Full-stack architecture (Flask + Telegram + SQLite) scaffolded through AI-assisted development. CRUD operations and auth patterns generated rapidly.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> البنية الكاملة (Flask + Telegram + SQLite) بُنيت عبر تطوير مساعد بالذكاء الاصطناعي. عمليات CRUD وأنماط المصادقة تُولّدت بسرعة.</span>
+                    </div>
+                </div>
+
+                <!-- supervisor_bot -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Assignment Distribution Engine <span class="ar">— محرك توزيع التعيينات</span></span>
+                        <span class="project-id">SYS-008</span>
+                    </div>
+                    <p class="project-desc">Automated student-supervisor matching via CSV/Excel upload. Processes bulk assignments, tracks delivery status, and broadcasts notifications with customizable templates.</p>
+                    <p class="ar-block">مطابقة تلقائية بين الطلاب والمشرفين عبر رفع ملفات CSV/Excel. يعالج التعيينات الجماعية، وتتبع حالة التسليم، وإرسال الإشعارات بقوالب قابلة للتخصيص.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge python">Python</span>
+                        <span class="tech-badge bot">Telegram Bot API</span>
+                        <span class="tech-badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">pandas</span>
+                        <span class="tech-badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">SQLite</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Telegram Bot (Async Handlers)
+├── CSV/Excel Parser (pandas)
+├── Column Auto-Detection (Arabic/English)
+├── Assignment DB (SQLite)
+├── Broadcast Queue (Pending → Sent/Failed)
+└── Template Engine (Variable substitution)</div>
+                        <div class="ar-block">بوت تيليجرام (معالجات غير متزامنة)
+├── محلل CSV/Excel (pandas)
+├── كشف تلقائي للأعمدة (عربي/إنجليزي)
+├── قاعدة بيانات التعيينات (SQLite)
+├── طابور البث (معلق → مرسل/فاشل)
+└── محرك القوالب (استبدال المتغيرات)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Column auto-detection logic (handling Arabic/English variants) and broadcast queue pattern designed with AI guidance.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> منطق الكشف التلقائي عن الأعمدة (التعامل مع الصيغ العربية/الإنجليزية) ونمط طابور البث صُمِّمت بإرشاد الذكاء الاصطناعي.</span>
+                    </div>
+                </div>
+
+                <!-- pdf_merger_bot -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Document Assembly Bot <span class="ar">— ربوت تجميع المستندات</span></span>
+                        <span class="project-id">SYS-009</span>
+                    </div>
+                    <p class="project-desc">Telegram bot for PDF document assembly with auto-generated cover pages. Merges multiple PDFs with bookmarks, generates covers from HTML templates, and serves via local HTTP server.</p>
+                    <p class="ar-block">بوت تيليجرام لتجميع مستندات PDF مع صفحات غلاف مُولّدة تلقائياً. يدمج ملفات PDF متعددة مع فهارس، ويولّد أغلفة من قوالب HTML، ويُقدّم عبر خادم HTTP محلي.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge python">Python</span>
+                        <span class="tech-badge bot">Telegram Bot API</span>
+                        <span class="tech-badge html">FastAPI</span>
+                        <span class="tech-badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">PyPDF2</span>
+                        <span class="tech-badge" style="background: rgba(245,158,11,0.15); color: #fbbf24;">WeasyPrint</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Telegram Bot (telebot)
+├── State Machine (Name → Files → Merge)
+├── Cover Generator (HTML → PDF)
+├── Merge Engine (PyPDF2 + Bookmarks)
+├── FastAPI Static Server (Large Files)
+└── Temp File Cleanup Pipeline</div>
+                        <div class="ar-block">بوت تيليجرام (telebot)
+├── آلة الحالات (اسم → ملفات → دمج)
+├── مولّد الأغلفة (HTML → PDF)
+├── محرك الدمج (PyPDF2 + فهارس)
+├── خادم FastAPI للملفات الثابتة (ملفات كبيرة)
+└── خط تنظيف الملفات المؤقتة</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> PDF generation pipeline and state machine pattern for multi-step user interaction designed through AI-assisted architecture.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> خط توليد PDF ونمط آلة الحالات للتفاعل متعدد الخطوات صُمِّم عبر معمارية مساعدة بالذكاء الاصطناعي.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOMAIN 4: Productivity Tools -->
+        <section class="domain">
+            <div class="domain-header">
+                <div class="domain-icon" style="background: rgba(245, 158, 11, 0.15);">🛠️</div>
+                <h2 class="domain-title">Productivity & Authoring Tools <span class="ar">أدوات الإنتاجية والتأليف</span></h2>
+                <span class="domain-count">3 systems <span class="ar">أنظمة</span></span>
+            </div>
+
+            <div class="project-grid">
+                <!-- manara -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Pioneer Project Authoring Suite <span class="ar">— حزمة تأليف المشاريع الريادية</span></span>
+                        <span class="project-id">SYS-010</span>
+                    </div>
+                    <p class="project-desc">Zero-dependency progressive web app for creating structured project proposals. Features a 6-step wizard, live A4 preview, and multi-format export (PDF, JSON, Markdown).</p>
+                    <p class="ar-block">تطبيق ويب تقدمي بدون تبعيات لإنشاء مقترحات مشاريع منظمة. يتميز بمعالج من 6 خطوات، ومعاينة حية بحجم A4، وتصدير بصيغ متعددة (PDF، JSON، Markdown).</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge html">HTML5</span>
+                        <span class="tech-badge html">CSS3</span>
+                        <span class="tech-badge js">ES6+</span>
+                        <span class="tech-badge pwa">PWA</span>
+                        <span class="tech-badge" style="background: rgba(100,116,139,0.15); color: #94a3b8;">LocalStorage</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Single-Page Application (Zero Dependencies)
+├── Wizard State Machine (6 Steps)
+├── Live Preview Engine (Real-time DOM)
+├── Print-Optimized CSS (@page A4)
+├── Import/Export (JSON ↔ Markdown)
+├── Auto-Save (LocalStorage)
+└── PWA Service Worker (Offline)</div>
+                        <div class="ar-block">تطبيق صفحة واحدة (بدون تبعيات)
+├── آلة حالة المعالج (6 خطوات)
+├── محرك المعاينة الحية (DOM فوري)
+├── CSS محسّن للطباعة (@page A4)
+├── استيراد/تصدير (JSON ↔ Markdown)
+├── حفظ تلقائي (LocalStorage)
+└── عامل خدمة PWA (بدون اتصال)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Entire application scaffolded from requirements using AI. Complex CSS print layouts, wizard state management, and live preview engine generated through iterative AI prompts.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> التطبيق بالكامل بُني من المتطلبات باستخدام الذكاء الاصطناعي. تخطيطات CSS المعقدة للطباعة، وإدارة حالة المعالج، ومحرك المعاينة الحية تُولّدت عبر مطالبات الذكاء الاصطناعي التكرارية.</span>
+                    </div>
+                </div>
+
+                <!-- sada -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Media Campaign Planner <span class="ar">— مخطيط الحملات الإعلامية</span></span>
+                        <span class="project-id">SYS-011</span>
+                    </div>
+                    <p class="project-desc">Zero-dependency wizard for planning media campaigns. Manages publication schedules, role assignments, media galleries, and generates printable A4 campaign documents.</p>
+                    <p class="ar-block">معالج بدون تبعيات لتخطيط الحملات الإعلامية. يدير جداول النشر، وتوزيع الأدوار، ومعرض الوسائط، ويولّد مستندات حملات قابلة للطباعة بحجم A4.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge html">HTML5</span>
+                        <span class="tech-badge html">CSS3</span>
+                        <span class="tech-badge js">ES6+</span>
+                        <span class="tech-badge" style="background: rgba(100,116,139,0.15); color: #94a3b8;">Glassmorphism</span>
+                        <span class="tech-badge" style="background: rgba(100,116,139,0.15); color: #94a3b8;">LocalStorage</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Single-Page Application (Zero Dependencies)
+├── 6-Step Wizard Form (Right Pane)
+├── Live A4 Preview Canvas (Left Pane)
+├── Media Parser (YouTube/Vimeo Embed)
+├── Role Tracker (Cultural + Media Teams)
+├── Export Pipeline (PDF/JSON/Markdown)
+└── Draft Persistence (LocalStorage)</div>
+                        <div class="ar-block">تطبيق صفحة واحدة (بدون تبعيات)
+├── نموذج معالج من 6 خطوات (اللوحة اليمنى)
+├── لوحة معاينة A4 حية (اللوحة اليسرى)
+├── محلل الوسائط (دمج YouTube/Vimeo)
+├── متتبع الأدوار (فريق ثقافي + إعلامي)
+├── خط التصدير (PDF/JSON/Markdown)
+└── حفظ المسودات (LocalStorage)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Media embed parsing, multi-step wizard architecture, and responsive split-pane layout designed through AI-assisted development iterations.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> تحليل دمج الوسائط، ومعمارية المعالج متعدد الخطوات، وتخطيط اللوحة المنقسمة المتجاوب صُمِّمت عبر تكرارات تطوير مساعدة بالذكاء الاصطناعي.</span>
+                    </div>
+                </div>
+
+                <!-- emos -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Emergency Maintenance Operations <span class="ar">— عمليات الصيانة الطارئة</span></span>
+                        <span class="project-id">SYS-012</span>
+                    </div>
+                    <p class="project-desc">Kanban-style device repair tracker with drag-and-drop workflow. Features protocol-based diagnostics, WhatsApp integration, local AI assistant for troubleshooting guidance, and professional report generation.</p>
+                    <p class="ar-block">متتبع إصلاح الأجهزة بنمط كانبان مع سير عمل سحب وإفلات. يتميز بتشخيصات قائمة على البروتوكول، وتكامل واتساب، ومساعد ذكاء اصطناعي محلي لتوجيه استكشاف الأخطاء، وتوليد تقارير احترافية.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge html">HTML5</span>
+                        <span class="tech-badge html">CSS3</span>
+                        <span class="tech-badge js">ES6+</span>
+                        <span class="tech-badge pwa">PWA</span>
+                        <span class="tech-badge api">WhatsApp API</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Single-Page Application (Zero Dependencies)
+├── Kanban Board (Drag & Drop API)
+├── Protocol Engine (Custom Diagnostics)
+├── Local AI Assistant (Expert System)
+├── WhatsApp Integration (Message Templates)
+├── Report Generator (Text Export)
+└── DB Backup/Restore (JSON Import/Export)</div>
+                        <div class="ar-block">تطبيق صفحة واحدة (بدون تبعيات)
+├── لوحة كانبان (واجهة سحب وإفلات)
+├── محرك البروتوكولات (تشخيصات مخصصة)
+├── مساعد ذكاء اصطناعي محلي (نظام خبرة)
+├── تكامل واتساب (قوالب الرسائل)
+├── مولّد التقارير (تصدير نصي)
+└── نسخ احتياطي/استعادة (استيراد/تصدير JSON)</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> Drag-and-drop Kanban implementation, expert system knowledge base, and WhatsApp message template engine built through AI-assisted code generation.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> تنفيذ كانبان بالسحب والإفلات، وقاعدة معرفة نظام الخبرة، ومحرك قوالب رسائل واتساب بُنت عبر توليد الكود بالذكاء الاصطناعي.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOMAIN 5: Browser Extensions -->
+        <section class="domain">
+            <div class="domain-header">
+                <div class="domain-icon" style="background: rgba(244, 63, 94, 0.15);">🌐</div>
+                <h2 class="domain-title">Browser Extensions <span class="ar">إضافات المتصفح</span></h2>
+                <span class="domain-count">1 system <span class="ar">نظام</span></span>
+            </div>
+
+            <div class="project-grid">
+                <!-- absher-keep-alive -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="project-name">Session Persistence Guardian <span class="ar">— حارس استمرارية الجلسة</span></span>
+                        <span class="project-id">SYS-013</span>
+                    </div>
+                    <p class="project-desc">Firefox browser extension that prevents automatic session expiration on government portals. Maintains active sessions through background activity simulation and user-configurable settings.</p>
+                    <p class="ar-block">إضافة متصفح فايرفوكس تمنع انتهاء الجلسات تلقائياً على بوابات الحكومة. تحافظ على الجلسات النشطة عبر محاكاة النشاط في الخلفية وإعدادات قابلة للتخصيص.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge ext">Firefox WebExtension</span>
+                        <span class="tech-badge js">Manifest V2</span>
+                        <span class="tech-badge api">Storage API</span>
+                        <span class="tech-badge api">Content Scripts</span>
+                    </div>
+
+                    <div class="architecture">
+                        <div class="arch-label">Architecture <span class="ar">— الهيكل المعماري</span></div>
+                        <div class="arch-text">Firefox WebExtension (Manifest V2)
+├── Background Script (Session Keep-Alive)
+├── Content Script (DOM Interaction)
+├── Popup UI (Settings Panel)
+├── Storage API (Preference Persistence)
+└── Domain-Matched Injection</div>
+                        <div class="ar-block">إضافة فايرفوكس (Manifest V2)
+├── نص الخلفية (حفاظ على الجلسة)
+├── نص المحتوى (تفاعل مع DOM)
+├── واجهة المنبثقة (لوحة الإعدادات)
+├── واجهة التخزين (حفظ التفضيلات)
+└── حقن مطابق للنطاق</div>
+                    </div>
+
+                    <div class="vibe-coding">
+                        <span class="vibe-icon">⚡</span>
+                        <span class="vibe-text"><strong>AI-Accelerated Development:</strong> WebExtension manifest structure, content script injection patterns, and session keep-alive strategy designed with AI assistance.</span>
+                        <span class="ar-block"><strong>تطوير مسرّع بالذكاء الاصطناعي:</strong> هيكل WebExtension، وأنماط حقن النصوص المحتوية، واستراتيجية الحفاظ على الجلسة صُمِّمت بمساعدة الذكاء الاصطناعي.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p class="footer-text">Engineering Portfolio — White-Label Showcases <span class="ar">— معرض المشاريع التقنية المجرّد</span></p>
+            <p class="footer-meta">Generated: 2026-07-28 | Scanner: Architectural Audit v2.0 | All client identifiers abstracted <span class="ar">جميع معلومات العميل مُجرَّدة</span></p>
+        </footer>
     </div>
-
-    <script>
-        document.querySelectorAll('nav a, .contact-item a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                if (!link.href.startsWith('https://')) {
-                    e.preventDefault();
-                    document.querySelector(link.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
-
