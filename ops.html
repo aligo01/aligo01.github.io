@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>علي شرف الدين | نظم أتمتة العمليات الإدارية والميدانية وخفض التكاليف</title>
+  <meta name="description" content="حلول ذكية لأتمتة العمليات الداخلية للشركات: ربط جداول الإكسل بالتكليفات الميدانية عبر تيليجرام، وإدارة الصيانة، وحماية بيانات المنشأة." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #1e3a8a; /* Corporate Deep Navy */
+      --primary-light: #2563eb;
+      --secondary: #d97706; /* Amber Gold */
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+      --shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.08), 0 8px 10px -6px rgba(30, 58, 138, 0.04);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      direction: rtl;
+    }
+
+    /* Top Action Bar */
+    .top-actions {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 10px 24px;
+      font-size: 0.88rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .top-actions a {
+      color: #fcd34d;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .top-actions .btn-print {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .top-actions .btn-print:hover {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
+      color: white;
+      padding: 60px 24px 75px;
+      text-align: center;
+      position: relative;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fcd34d;
+      padding: 6px 18px;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      color: #e2e8f0;
+      max-width: 780px;
+      margin: 0 auto 30px;
+    }
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      background: var(--secondary);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-main:hover {
+      background: #b45309;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 13px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Container & Cards */
+    .container {
+      max-width: 1140px;
+      margin: -35px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+    .metrics-bar {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .metric-item .val {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: block;
+    }
+    .metric-item .lbl {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Section Headings */
+    .section-title {
+      text-align: center;
+      margin: 50px 0 25px;
+    }
+    .section-title h2 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .section-title p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: var(--surface);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 35px;
+      margin-bottom: 30px;
+    }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .product-header h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .tag-badge {
+      background: #eff6ff;
+      color: var(--primary-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 25px 0;
+      list-style: none;
+    }
+    .feature-list li {
+      background: #f8fafc;
+      border: 1px solid #eef2f6;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.98rem;
+    }
+    .feature-list li i {
+      color: var(--primary-light);
+      margin-top: 5px;
+      font-size: 1.1rem;
+    }
+
+    /* Grid 2 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .card-item {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .card-item h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-item p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Box */
+    .cta-box {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 45px 30px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .cta-box h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cta-box p {
+      color: #cbd5e1;
+      max-width: 650px;
+      margin: 0 auto 25px;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Print CV Styles */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+        direction: rtl;
+      }
+      .top-actions, .hero-btns, .cta-box, footer, .badge-pill, .btn-print {
+        display: none !important;
+      }
+      .hero {
+        background: none !important;
+        color: #000 !important;
+        padding: 0 0 15px 0 !important;
+        text-align: right !important;
+        border-bottom: 2px solid #1e3a8a;
+      }
+      .hero h1 {
+        font-size: 18pt !important;
+        color: #1e3a8a !important;
+        margin-bottom: 4px !important;
+      }
+      .hero p {
+        color: #333 !important;
+        font-size: 11pt !important;
+        margin-bottom: 6px !important;
+      }
+      .container {
+        margin: 15px 0 0 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .metrics-bar {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+      }
+      .metric-item .val {
+        font-size: 14pt !important;
+      }
+      .product-card, .card-item {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+        page-break-inside: avoid;
+      }
+      .feature-list li {
+        background: none !important;
+        border: none !important;
+        padding: 4px 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar -->
+  <div class="top-actions">
+    <div>
+      <i class="fa-solid fa-briefcase"></i> حلول أتمتة العمليات التشغيلية والميدانية للشركات
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <button class="btn-print" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> طباعة كـ سيرة تنفيذية (A4 PDF)
+      </button>
+      <a href="https://wa.me/966500000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AD%D9%88%D9%84%20%D8%A3%D8%AA%D9%85%D8%AA%D8%A9%20%D8%B9%D9%85%D9%84%D9%8A%D8%A7%D8%AA%20%D9%85%D9%86%D8%B4%D8%A3%D8%AA%D9%86%D8%A7">
+        <i class="fa-brands fa-whatsapp"></i> واتساب الأعمال
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="badge-pill">
+      <i class="fa-solid fa-chart-line"></i> خفض النفقات التشغيلية والتخلص من التعقيد الإداري
+    </div>
+    <h1>علي شرف الدين</h1>
+    <p>أخصائي أتمتة العمليات الداخلية ونظم إدارة المهام (SMB Operations) | تحويل جداول الإكسل لتكليفات هاتفية فورية، وإدارة الصيانة، وحماية بيانات الأعمال دون تكاليف ERP الباهظة.</p>
+    
+    <div class="hero-btns">
+      <a href="https://wa.me/966500000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9%20%D8%A3%D8%AA%D9%85%D8%AA%D8%A9%20%D8%B9%D9%85%D9%84%D9%8A%D8%A7%D8%AA%20%D9%85%D9%86%D8%B4%D8%A3%D8%AA%D9%86%D8%A7" class="btn-main">
+        <i class="fa-brands fa-whatsapp"></i> طلب دراسة أتمتة لعمليات منشأتك
+      </a>
+      <button class="btn-outline" onclick="window.print()">
+        <i class="fa-solid fa-file-pdf"></i> حفظ السيرة الذاتية التشغيلية (PDF)
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Value Metric Bar -->
+    <div class="metrics-bar">
+      <div class="metric-item">
+        <span class="val">10x</span>
+        <span class="lbl">سرعة تسليم ومتابعة التكليفات اليومية</span>
+      </div>
+      <div class="metric-item">
+        <span class="val">70%</span>
+        <span class="lbl">توفير تكلفة برمجيات ERP المركزية</span>
+      </div>
+      <div class="metric-item">
+        <span class="val">صفر</span>
+        <span class="lbl">مهام مفقودة بين المشرف والموظفين الميدانيين</span>
+      </div>
+      <div class="metric-item">
+        <span class="val">24/7</span>
+        <span class="lbl">جاهزية التنبيهات وإدارة الأعطال الطارئة</span>
+      </div>
+    </div>
+
+    <!-- Section: Core System -->
+    <div class="section-title">
+      <h2><i class="fa-solid fa-gears"></i> نظام الإشراف والتكليفات الميدانية الفوري</h2>
+      <p>ربط مباشر بين جداول المهام الإدارية وهواتف الموظفين دون تطبيقات وسيطة معقدة</p>
+    </div>
+
+    <!-- Product 1: Supervisor Bot -->
+    <div class="product-card">
+      <div class="product-header">
+        <div>
+          <h3>نظام "المشرف الذكي" (Supervisor Bot Pipeline)</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">محرك أتمتة صامت يراقب جداول Excel / Google Sheets ويوزع المهام فورياً للموظفين عبر تيليجرام وواتساب مع تتبع الإنجاز.</p>
+        </div>
+        <span class="tag-badge"><i class="fa-solid fa-bolt"></i> ربط فوري خلال 24 ساعة</span>
+      </div>
+
+      <ul class="feature-list">
+        <li>
+          <i class="fa-solid fa-file-excel"></i>
+          <div>
+            <strong>الإدارة من نفس جدول الإكسل:</strong>
+            <p>المشرف يكتب المهمة وتاريخ الاستحقاق واسم الموظف في الإكسل كالمعتاد؛ النظام يتولى الباقي تلقائياً.</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-paper-plane"></i>
+          <div>
+            <strong>إشعار فوري وتأكيد استلام:</strong>
+            <p>يصل الموظف إشعار مباشر على هاتفه مع زر "تأكيد البدء" و"تم الإنجاز" دون الحاجة لفتح حاسوب.</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <div>
+            <strong>تنبيهات تلقائية قبل المواعيد النهائية:</strong>
+            <p>إرسال تذكيرات دورية بالمهام المتأخرة وتحديث حالة الجدول للمدير لحظة بلحظة.</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-shield"></i>
+          <div>
+            <strong>أمان البيانات واستقلالية التشغيل:</strong>
+            <p>يعمل النظام على خادم أو حاسوب خاص بالمنشأة، مع تحكم كامل بالصلاحيات وهوية المستلمين.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Live Interactive Simulator for Supervisor Bot -->
+    <div class="product-card" style="border: 2px dashed #1e3a8a; background: #fbfcfe;">
+      <div class="product-header">
+        <div>
+          <h3><i class="fa-solid fa-mobile-screen-button" style="color: var(--secondary);"></i> تجربة حية: محاكي ربط الإكسل بتكليفات تليجرام الفورية</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">جرب إرسال تكليف افتراضي من جدول الإدارة وشاهد وصوله اللحظي لهاتف الموظف وتحديث الإنجاز</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; align-items: start;">
+        <!-- Left: Simulated Excel Roster -->
+        <div style="background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 18px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+            <span style="font-weight: 800; color: #107c41; font-size: 0.95rem;"><i class="fa-solid fa-file-excel"></i> جدول تكليفات العمليات (Excel)</span>
+            <span class="tag-badge" style="font-size: 0.75rem;">مزامنة مباشرة ⚡</span>
+          </div>
+
+          <div style="font-size: 0.88rem; margin-bottom: 12px;">
+            <label style="display: block; font-weight: 700; margin-bottom: 4px;">المهمة الجديدة:</label>
+            <input id="demoTaskName" type="text" value="فحص التبريد في مستودع 4" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;" />
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+            <div style="flex: 1;">
+              <label style="display: block; font-weight: 700; margin-bottom: 4px; font-size: 0.85rem;">الموظف الميداني:</label>
+              <select id="demoWorker" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
+                <option>خالد العتيبي (فني)</option>
+                <option>سالم الدوسري (مشرف)</option>
+              </select>
+            </div>
+            <div style="flex: 1;">
+              <label style="display: block; font-weight: 700; margin-bottom: 4px; font-size: 0.85rem;">الحالة في الإكسل:</label>
+              <span id="excelStatusBadge" style="display: inline-block; padding: 7px 12px; background: #fef3c7; color: #92400e; font-weight: 700; border-radius: 6px; font-size: 0.85rem; width: 100%; text-align: center;">جديدة ⏳</span>
+            </div>
+          </div>
+
+          <button id="dispatchBtn" class="btn-main" style="width: 100%; justify-content: center; padding: 10px; font-size: 0.95rem;" onclick="dispatchDemoTask()">
+            <i class="fa-solid fa-paper-plane"></i> إرسال التكليف لهاتف الموظف
+          </button>
+        </div>
+
+        <!-- Right: Simulated Mobile Telegram View -->
+        <div style="background: #0f172a; border-radius: 20px; padding: 15px; color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+          <div style="text-align: center; border-bottom: 1px solid #334155; padding-bottom: 8px; margin-bottom: 12px; font-size: 0.85rem; color: #94a3b8;">
+            <i class="fa-brands fa-telegram" style="color: #38bdf8;"></i> هاتف الموظف (Telegram Bot)
+          </div>
+
+          <div id="phoneWaiting" style="padding: 25px 15px; text-align: center; color: #64748b; font-size: 0.9rem;">
+            في انتظار تكليف جديد من لوحة الإكسل...
+          </div>
+
+          <div id="phoneMessage" style="display: none; background: #1e293b; border-radius: 12px; padding: 14px; border: 1px solid #334155;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.8rem; color: #38bdf8;">
+              <span><i class="fa-solid fa-bell"></i> تكليف جديد من الإدارة</span>
+              <span>الآن</span>
+            </div>
+            <p id="msgTaskText" style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">المهمة: فحص التبريد في مستودع 4</p>
+            <div style="display: flex; gap: 8px;">
+              <button id="btnStartWork" onclick="confirmTaskAction('started')" style="flex: 1; background: #0284c7; color: #fff; border: none; padding: 6px; border-radius: 6px; font-family: inherit; font-size: 0.82rem; cursor: pointer;">
+                🚀 بدء التنفيذ
+              </button>
+              <button id="btnDoneWork" onclick="confirmTaskAction('done')" style="flex: 1; background: #16a34a; color: #fff; border: none; padding: 6px; border-radius: 6px; font-family: inherit; font-size: 0.82rem; cursor: pointer;">
+                ✅ تم الإنجاز
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function dispatchDemoTask() {
+        const task = document.getElementById('demoTaskName').value;
+        const msgBox = document.getElementById('phoneMessage');
+        const waitBox = document.getElementById('phoneWaiting');
+        const badge = document.getElementById('excelStatusBadge');
+        const msgText = document.getElementById('msgTaskText');
+
+        waitBox.style.display = 'none';
+        msgBox.style.display = 'block';
+        msgText.innerText = 'المهمة: ' + task;
+        badge.innerText = 'تم الإرسال 📲';
+        badge.style.background = '#e0f2fe';
+        badge.style.color = '#0369a1';
+      }
+
+      function confirmTaskAction(action) {
+        const badge = document.getElementById('excelStatusBadge');
+        if (action === 'started') {
+          badge.innerText = 'قيد العمل 🟡';
+          badge.style.background = '#fef08a';
+          badge.style.color = '#854d0e';
+          document.getElementById('btnStartWork').style.opacity = '0.5';
+        } else if (action === 'done') {
+          badge.innerText = 'مكتملة بنجاح ✅';
+          badge.style.background = '#dcfce7';
+          badge.style.color = '#15803d';
+          alert('تم تحديث جدول الإكسل لدى الإدارة بنجاح: المهمة مكتملة وموثقة بالوقت والتاريخ!');
+        }
+      }
+    </script>
+
+    <!-- Section: Secondary Solutions -->
+    <div class="section-title">
+      <h2><i class="fa-solid fa-layer-group"></i> منظومة حلول المساندة التشغيلية المنجزة</h2>
+      <p>تطبيقات خفيفة وعملية تم بناؤها لحل مشاكل إدارية حقيقية</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Card 1: EMOS Maintenance -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-screwdriver-wrench"></i> نظام إدارة الصيانة والأعطال الطارئة (EMOS)</h4>
+        <p>تطبيق PWA خفيف يعمل دون إنترنت لتسجيل أعطال المعدات والأجهزة وتوزيع تذاكر الصيانة للفرق الفنية بأسلوب كانبان التفاعلي مع تقارير الإغلاق.</p>
+      </div>
+
+      <!-- Card 2: SmartForms Enterprise -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-receipt"></i> أداة تسريع إدخال النماذج والفواتير (SmartForms)</h4>
+        <p>محرك متصفح متقدم يملأ الاستمارات المتكررة على البوابات الحكومية والمنصات الداخلية تلقائياً مع حماية جلسات العمل من الانقطاع المفاجئ.</p>
+      </div>
+
+      <!-- Card 3: Proposal Engine (Manara & Sada) -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-file-invoice"></i> منصة صياغة مقترحات المشاريع والصفقات (Manara)</h4>
+        <p>نظام توليد وتصميم عروض الأسعار والمقترحات الفنية للشركات والجهات المانحة مع تصدير فوري لتقارير A4 احترافية تعزز ثقة العميل وتغلق الصفقات.</p>
+      </div>
+
+      <!-- Card 4: Document Assembler -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-file-zipper"></i> مجمّع ومعد المستندات الرسمية</h4>
+        <p>روبوت أتمتة لدمج ملفات الـ PDF، وإنشاء الفهارس التلقائية، ووضع الأختام والأغلفة الموحدة لعروض الشركات والمناقصات بضغطة زر واحدة.</p>
+      </div>
+    </div>
+
+    <!-- Contact & Pitch Box -->
+    <div class="cta-box">
+      <h3>هل ترغب في رفع كفاءة فريقك وتقليص الهدر الإداري؟</h3>
+      <p>احصل على استشارة تشغيلية لتقييم عمليات منشأتك، وسنقوم بتركيب نظام أتمتة مخصص يلائم طبيعة عملكم بأقل تكلفة ممكنة.</p>
+      <a href="https://wa.me/966500000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%84%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%20%D9%86%D8%B8%D8%A7%D9%85%20%D8%A3%D8%AA%D9%85%D8%AA%D8%A9%20%D9%84%D8%B4%D8%B1%D9%83%D8%AA%D9%86%D8%A7" class="btn-main">
+        <i class="fa-brands fa-whatsapp"></i> بدء المحادثة المباشرة عبر واتساب
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    حلول أتمتة العمليات الإدارية والميدانية · استشاري الأتمتة: علي شرف الدين · البريد: projectorsali@gmail.com
+  </footer>
+
+</body>
+</html>

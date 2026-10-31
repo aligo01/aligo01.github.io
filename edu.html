@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>علي شرف الدين | نظم الأتمتة المدرسية والتوجيه الطلابي الذكي</title>
+  <meta name="description" content="حلول وأنظمة أتمتة العمل الإرشادي والمدرسي وربط بيانات نظام نور وتوليد التقارير الميدانية بدقة متناهية." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #0f5146;
+      --primary-light: #186b5e;
+      --secondary: #c59b27;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --muted: #64748b;
+      --shadow: 0 10px 25px -5px rgba(15, 81, 70, 0.08), 0 8px 10px -6px rgba(15, 81, 70, 0.04);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      direction: rtl;
+    }
+
+    /* Top Bar Action */
+    .top-actions {
+      background: #093730;
+      color: #cbd5e1;
+      padding: 10px 24px;
+      font-size: 0.88rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .top-actions a {
+      color: #fef08a;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .top-actions .btn-print {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .top-actions .btn-print:hover {
+      background: var(--secondary);
+      color: #093730;
+      border-color: var(--secondary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #093730 0%, #0f5146 60%, #186b5e 100%);
+      color: white;
+      padding: 60px 24px 75px;
+      text-align: center;
+      position: relative;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fef08a;
+      padding: 6px 18px;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      color: #e2e8f0;
+      max-width: 780px;
+      margin: 0 auto 30px;
+    }
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      background: var(--secondary);
+      color: #093730;
+      padding: 13px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(197, 155, 39, 0.35);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-main:hover {
+      background: #dfb235;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 13px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Container & Cards */
+    .container {
+      max-width: 1140px;
+      margin: -35px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+    .metrics-bar {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .metric-item .val {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: block;
+    }
+    .metric-item .lbl {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Section Headings */
+    .section-title {
+      text-align: center;
+      margin: 50px 0 25px;
+    }
+    .section-title h2 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .section-title p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* Featured Product Card */
+    .product-card {
+      background: var(--surface);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 35px;
+      margin-bottom: 30px;
+    }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .product-header h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .tag-badge {
+      background: #e6f4f1;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 25px 0;
+      list-style: none;
+    }
+    .feature-list li {
+      background: #f8fafc;
+      border: 1px solid #eef2f6;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.98rem;
+    }
+    .feature-list li i {
+      color: var(--primary);
+      margin-top: 5px;
+      font-size: 1.1rem;
+    }
+
+    /* Case Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .card-item {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .card-item h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-item p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Box */
+    .cta-box {
+      background: linear-gradient(135deg, #093730 0%, #0f5146 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 45px 30px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .cta-box h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cta-box p {
+      color: #cbd5e1;
+      max-width: 650px;
+      margin: 0 auto 25px;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* CV Print Format (@media print) */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+        direction: rtl;
+      }
+      .top-actions, .hero-btns, .cta-box, footer, .badge-pill, .btn-print {
+        display: none !important;
+      }
+      .hero {
+        background: none !important;
+        color: #000 !important;
+        padding: 0 0 15px 0 !important;
+        text-align: right !important;
+        border-bottom: 2px solid #0f5146;
+      }
+      .hero h1 {
+        font-size: 18pt !important;
+        color: #0f5146 !important;
+        margin-bottom: 4px !important;
+      }
+      .hero p {
+        color: #333 !important;
+        font-size: 11pt !important;
+        margin-bottom: 6px !important;
+      }
+      .container {
+        margin: 15px 0 0 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .metrics-bar {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+      }
+      .metric-item .val {
+        font-size: 14pt !important;
+      }
+      .product-card, .card-item {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+        page-break-inside: avoid;
+      }
+      .feature-list li {
+        background: none !important;
+        border: none !important;
+        padding: 4px 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar -->
+  <div class="top-actions">
+    <div>
+      <i class="fa-solid fa-graduation-cap"></i> بوابة النظم المدرسية والإرشادية المتخصصة
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <button class="btn-print" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> طباعة كـ سيرة ذاتية (A4 PDF)
+      </button>
+      <a href="https://wa.me/966500000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A7%D8%B7%D9%84%D8%B9%D8%AA%20%D8%B9%D9%84%D9%89%20%D9%85%D8%B9%D8%B1%D8%B6%20%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%84%20%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9%20%D9%88%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1">
+        <i class="fa-brands fa-whatsapp"></i> واتساب الإدارة
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="badge-pill">
+      <i class="fa-solid fa-shield-halved"></i> معتمد ومخصص لنظام نور واللوائح التنظيمية 1446-1447هـ
+    </div>
+    <h1>علي شرف الدين</h1>
+    <p>أخصائي نظم الأتمتة المدرسية والتوجيه الطلابي | تطوير المعالجة الذكية لبيانات نظام "نور" وإصدار حزم الشواهد والتقارير الإرشادية بنقرة زر واحدة.</p>
+    
+    <div class="hero-btns">
+      <a href="https://wa.me/966500000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%B7%D9%84%D8%A8%20%D8%B9%D8%B1%D8%B6%20%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A%20%D9%84%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9%20%D8%A7%D9%84%D8%AA%D9%88%D8%AC%D9%8A%D9%87%20%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A" class="btn-main">
+        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب لجدولة عرض تجريبي
+      </a>
+      <button class="btn-outline" onclick="window.print()">
+        <i class="fa-solid fa-file-pdf"></i> حفظ السيرة الذاتية المهنية (PDF)
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Value Metric Bar -->
+    <div class="metrics-bar">
+      <div class="metric-item">
+        <span class="val">80%</span>
+        <span class="lbl">توفير الوقت في تفريغ الاستمارات الإرشادية</span>
+      </div>
+      <div class="metric-item">
+        <span class="val">100%</span>
+        <span class="lbl">خصوصية وسرية تامة لحالات الطلاب</span>
+      </div>
+      <div class="metric-item">
+        <span class="val">صفر</span>
+        <span class="lbl">إعادة كتابة بيانات الطلاب وأولياء الأمور يدوياً</span>
+      </div>
+      <div class="metric-item">
+        <span class="val">15+</span>
+        <span class="lbl">نموذج ومحضر معتمد ومطابق للدليل الوزاري</span>
+      </div>
+    </div>
+
+    <!-- Section: Core System -->
+    <div class="section-title">
+      <h2><i class="fa-solid fa-laptop-code"></i> المنظومة المتكاملة للموجه الطلابي</h2>
+      <p>حلول برمجية واقعية تم تطويرها خصيصاً لتفريغ جهد الموجه الطلابي وإدارة المدرسة</p>
+    </div>
+
+    <!-- Product 1: نظام التوجيه الطلابي -->
+    <div class="product-card">
+      <div class="product-header">
+        <div>
+          <h3>نظام إدارة التوجيه الطلابي الذكي</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">نظام تشغيلي متكامل يقرأ بيانات الطلاب الأساسية من نظام نور المباشر ويغذي كافة السجلات والمقابلات والمحاضر الإرشادية تلقائياً.</p>
+        </div>
+        <span class="tag-badge"><i class="fa-solid fa-check-double"></i> تشغيل ميداني معتمد</span>
+      </div>
+
+      <ul class="feature-list">
+        <li>
+          <i class="fa-solid fa-file-excel"></i>
+          <div>
+            <strong>استيراد ذكي من نظام نور:</strong>
+            <p>سحب بيانات الفصول، الأسماء، أرقام الهويات، وأرقام أولياء الأمور لتعبئة كافة الاستمارات بنقرة زر.</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-comments"></i>
+          <div>
+            <strong>توثيق المقابلات الإرشادية والملاحظات:</strong>
+            <p>تسجيل الجلسات الإرشادية الفردية والجماعية وتتبع الحالات والمواقف السلوكية بدقة وسرية.</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-phone-volume"></i>
+          <div>
+            <strong>سجلات التواصل والمداولات الهاتفية:</strong>
+            <p>حصر وتوثيق لقاءات ومكالمات أولياء الأمور وحفظ التوصيات والتعهدات الرسمية في ملف الطالب.</p>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-file-signature"></i>
+          <div>
+            <strong>محاضر اللجان وتقارير المناسبات:</strong>
+            <p>تجهيز محاضر لجان التوجيه الطلابي وتقارير البرامج الوقائية والأسابيع الوزارية جاهزة لزيارة المشرف التربوي.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Live Interactive Simulator for Counselor Tasks -->
+    <div class="product-card" style="border: 2px dashed #0f5146; background: #fdfefe;">
+      <div class="product-header">
+        <div>
+          <h3><i class="fa-solid fa-flask" style="color: var(--secondary);"></i> تجربة حية: محاكي مهام الموجه الطلابي الفورية</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">شاهد كيف يتم سحب بيانات الطلاب من نور وتوليد استمارات المقابلة والمداولة الهاتفية والمحاضر تلقائياً</p>
+        </div>
+        <button id="runEduDemoBtn" class="btn-main" style="padding: 8px 18px; font-size: 0.9rem;" onclick="simulateEduProcess()">
+          <i class="fa-solid fa-play"></i> تشغيل المحاكاة الآن
+        </button>
+      </div>
+
+      <!-- Simulator Pipeline State -->
+      <div id="simPipeline" style="background: #f1f5f9; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: 700; font-size: 0.95rem;">
+          <span id="simStatusText"><i class="fa-solid fa-file-excel" style="color: #107c41;"></i> ملف نور التجريبي جاهز: Noor_Students_Roster_1446.xlsx (حصر الطلاب وأولياء الأمور)</span>
+          <span id="simPercent" style="color: var(--primary);">0%</span>
+        </div>
+        <div style="background: #e2e8f0; height: 10px; border-radius: 5px; overflow: hidden;">
+          <div id="simProgressBar" style="width: 0%; height: 100%; background: var(--primary); transition: width 0.4s ease;"></div>
+        </div>
+      </div>
+
+      <!-- Generated Results View -->
+      <div id="simResults" style="display: none; border-top: 1px solid var(--border); padding-top: 20px;">
+        <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+          <button class="tag-badge" style="cursor: pointer; background: var(--primary); color: #fff;" onclick="showReportTab('interview')">
+            <i class="fa-solid fa-user-check"></i> استمارة مقابلة إرشادية فردية
+          </button>
+          <button class="tag-badge" style="cursor: pointer;" onclick="showReportTab('call')">
+            <i class="fa-solid fa-phone"></i> نموذج مداولة وتواصل هاتفي
+          </button>
+          <button class="tag-badge" style="cursor: pointer;" onclick="showReportTab('committee')">
+            <i class="fa-solid fa-users-rectangle"></i> محضر اجتماع لجنة التوجيه
+          </button>
+        </div>
+
+        <div id="interviewTab" style="background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 25px;">
+          <!-- Official Ministry Form Preview -->
+          <div style="border: 2px solid #0f5146; border-radius: 8px; padding: 20px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 15px;">
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f5146; padding-bottom: 10px; margin-bottom: 15px;">
+              <div style="line-height: 1.5; font-size: 0.85rem; font-weight: 700;">
+                المملكة العربية السعودية<br>
+                وزارة التعليم<br>
+                الإدارة العامة للتعليم<br>
+                مدرسة أهلية
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 1.15rem; font-weight: 900; color: #0f5146;">استمارة مقابلة إرشادية فردية</div>
+                <div style="font-size: 0.82rem; color: #64748b;">الدليل الإجرائي المعتمد - وزارة التعليم</div>
+              </div>
+              <div style="line-height: 1.5; font-size: 0.85rem; text-align: left;" dir="rtl">
+                العام الدراسي: 1446-1447هـ<br>
+                الفصل الدراسي: الأول<br>
+                التاريخ: 1446/02/15هـ
+              </div>
+            </div>
+
+            <!-- Table -->
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.9rem;">
+              <tbody>
+                <tr style="background: #f1f5f9;">
+                  <td colspan="4" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-weight: 800; color: #0f5146;">أولاً: بيانات الطالب والمقابلة</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; width: 18%; text-align: right;">اسم الطالب:</th>
+                  <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 32%;"><strong>ريان بن خالد العتيبي</strong></td>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; width: 18%; text-align: right;">السجل المدني:</th>
+                  <td style="border: 1px solid #cbd5e1; padding: 6px 10px; width: 32%;">1109845210</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">الصف والفصل:</th>
+                  <td style="border: 1px solid #cbd5e1; padding: 6px 10px;">الثاني متوسط (2/1)</td>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">نوع المقابلة:</th>
+                  <td style="border: 1px solid #cbd5e1; padding: 6px 10px;">فردية نمائية وتعديل سلوك</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">موضوع المقابلة:</th>
+                  <td colspan="3" style="border: 1px solid #cbd5e1; padding: 6px 10px;">بحث أسباب تكرار التأخر الصباحي وتراجع المشاركة الصفية.</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">الهدف الإرشادي:</th>
+                  <td colspan="3" style="border: 1px solid #cbd5e1; padding: 6px 10px;">مساعدة الطالب على تحقيق الانضباط المدرسي وبناء خطة تنظيم الوقت والنوم المبكر.</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">الفنية الإرشادية:</th>
+                  <td colspan="3" style="border: 1px solid #cbd5e1; padding: 6px 10px;">الحوار والمناقشة العقلانية + إبرام عقد سلوكي معزز بالمكافأة.</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">وقائع المقابلة:</th>
+                  <td colspan="3" style="border: 1px solid #cbd5e1; padding: 8px 10px; height: 50px;">تم التداول مع الطالب حول أهمية الحضور الصباحي؛ أبدى استجابة ممتازة والتزاماً بجدول المتابعة اليومي.</td>
+                </tr>
+                <tr>
+                  <th style="border: 1px solid #cbd5e1; padding: 6px 10px; background: #f8fafc; text-align: right;">التوصيات:</th>
+                  <td colspan="3" style="border: 1px solid #cbd5e1; padding: 8px 10px; height: 50px;">متابعة أسبوعية مع رائد الفصل + التواصل مع ولي الأمر لتعزيز جدول الانضباط المنزلي.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Signatures -->
+            <div style="display: flex; justify-content: space-between; margin-top: 20px; padding: 0 30px; font-size: 0.9rem;">
+              <div style="text-align: center;">
+                <strong>الموجه الطلابي:</strong><br><br>
+                أ. عبدالعزيز بن محمد<br>
+                التوقيع: .....................
+              </div>
+              <div style="text-align: center;">
+                <strong>مدير المدرسة:</strong><br><br>
+                أ. عبدالله بن سعد<br>
+                الختم والتوقيع: .....................
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="printOfficialFormOnly()" class="btn-main" style="padding: 9px 18px; font-size: 0.9rem;">
+              <i class="fa-solid fa-print"></i> طباعة هذه الاستمارة الرسمية كـ A4 مستقل
+            </button>
+            <span style="color: var(--muted); font-size: 0.85rem; align-self: center;">
+              * يتم سحب كافة هذه الحقول وتعبئتها آلياً من كشف الطلاب بنقرة واحدة.
+            </span>
+          </div>
+        </div>
+
+        <div id="callTab" style="display: none; background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 20px;">
+          <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 12px;">
+            <strong>سجل تواصل ومداولة هاتفية مع الأسرة</strong>
+            <p style="font-size: 0.9rem; color: #0f5146; margin-top: 4px;"><strong>رقم ولي الأمر:</strong> 050XXXXXXX | <strong>موضوع الاتصال:</strong> إحاطة ولي الأمر بالملاحظة الميدانية وتنسيق جدول الحضور الصباحي والتأكيد على الشراكة بين البيت والمدرسة.</p>
+          </div>
+        </div>
+
+        <div id="committeeTab" style="display: none; background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 20px;">
+          <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 12px;">
+            <strong>محضر اجتماع لجنة التوجيه الطلابي (الاجتماع الفصلي الأول 1446هـ)</strong>
+            <p style="font-size: 0.9rem; color: #475569; margin-top: 4px;">توثيق تشكيل اللجنة برئاسة مدير المدرسة وعضوية الموجه الطلابي والمعلمين؛ تم تفريغ التوصيات والبرامج الوقائية المعتمدة وفق الأدلة التنظيمية للوزارة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function simulateEduProcess() {
+        const btn = document.getElementById('runEduDemoBtn');
+        const bar = document.getElementById('simProgressBar');
+        const txt = document.getElementById('simStatusText');
+        const pct = document.getElementById('simPercent');
+        const res = document.getElementById('simResults');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جارِ إعداد السجلات...';
+
+        bar.style.width = '35%';
+        txt.innerHTML = 'سحب بيانات الطلاب والفصول من ملف نور...';
+        pct.innerText = '35%';
+
+        setTimeout(() => {
+          bar.style.width = '75%';
+          txt.innerHTML = 'تعبئة استمارات المقابلات الإرشادية والمداولات الهاتفية تلقائياً...';
+          pct.innerText = '75%';
+        }, 800);
+
+        setTimeout(() => {
+          bar.style.width = '100%';
+          txt.innerHTML = '✅ اكتملت المعالجة بنجاح! السجلات الإرشادية والمحاضر جاهزة للطباعة والاعتماد.';
+          pct.innerText = '100%';
+          res.style.display = 'block';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> إعادة المحاكاة';
+        }, 1600);
+      }
+
+      function showReportTab(tab) {
+        document.getElementById('interviewTab').style.display = tab === 'interview' ? 'block' : 'none';
+        document.getElementById('callTab').style.display = tab === 'call' ? 'block' : 'none';
+        document.getElementById('committeeTab').style.display = tab === 'committee' ? 'block' : 'none';
+      }
+
+      function printOfficialFormOnly() {
+        const win = window.open('', '_blank');
+        win.document.write(`
+          <!DOCTYPE html>
+          <html lang="ar" dir="rtl">
+          <head>
+            <meta charset="UTF-8">
+            <title>استمارة مقابلة إرشادية - ريان العتيبي</title>
+            <style>
+              body { font-family: 'Tajawal', Tahoma, sans-serif; direction: rtl; padding: 30px; color: #000; }
+              .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 20px; }
+              .title { text-align: center; background: #f0f0f0; padding: 8px; font-size: 16px; font-weight: bold; border: 1px solid #000; margin-bottom: 20px; }
+              table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+              th, td { border: 1px solid #000; padding: 8px 10px; font-size: 13px; text-align: right; }
+              th { background: #f9f9f9; }
+              .section-title { font-weight: bold; background: #eee; }
+              .footer { margin-top: 50px; display: flex; justify-content: space-between; padding: 0 40px; }
+              @media print { body { padding: 0; } }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <div style="font-size: 13px; line-height: 1.6;">
+                المملكة العربية السعودية<br>
+                وزارة التعليم<br>
+                الإدارة العامة للتعليم<br>
+                مدرسة أهلية
+              </div>
+              <div style="text-align: center;">
+                <h2 style="margin: 0; font-size: 18px;">استمارة مقابلة إرشادية فردية</h2>
+                <div style="font-size: 12px; margin-top: 4px;">الدليل الإجرائي المعتمد للموجه الطلابي</div>
+              </div>
+              <div style="font-size: 13px; line-height: 1.6; text-align: left;" dir="rtl">
+                العام الدراسي: 1446-1447هـ<br>
+                الفصل الدراسي: الأول<br>
+                التاريخ: 1446/02/15هـ
+              </div>
+            </div>
+
+            <table>
+              <tr><td colspan="4" class="section-title">بيانات الطالب والمقابلة</td></tr>
+              <tr><th style="width:20%;">اسم الطالب:</th><td><strong>ريان بن خالد العتيبي</strong></td><th style="width:20%;">السجل المدني:</th><td>1109845210</td></tr>
+              <tr><th>الصف والفصل:</th><td>الثاني متوسط (2/1)</td><th>نوع المقابلة:</th><td>فردية نمائية وتعديل سلوك</td></tr>
+              <tr><th>موضوع المقابلة:</th><td colspan="3">بحث أسباب تكرار التأخر الصباحي وتراجع المشاركة الصفية.</td></tr>
+              <tr><th>الهدف الإرشادي:</th><td colspan="3">مساعدة الطالب على تحقيق الانضباط المدرسي وبناء خطة تنظيم الوقت والنوم المبكر.</td></tr>
+              <tr><th>الفنية الإرشادية:</th><td colspan="3">الحوار والمناقشة العقلانية + إبرام عقد سلوكي معزز بالمكافأة.</td></tr>
+              <tr><th>وقائع المقابلة:</th><td colspan="3" style="height:70px;">تم التداول مع الطالب حول أهمية الحضور الصباحي؛ أبدى استجابة ممتازة والتزاماً بجدول المتابعة اليومي.</td></tr>
+              <tr><th>التوصيات والواجبات:</th><td colspan="3" style="height:70px;">متابعة أسبوعية مع رائد الفصل + التواصل مع ولي الأمر لتعزيز جدول الانضباط المنزلي.</td></tr>
+            </table>
+
+            <div class="footer">
+              <div style="text-align: center;">
+                الموجه الطلابي:<br><br>
+                <strong>أ. عبدالعزيز بن محمد</strong><br>
+                التوقيع: ..........................
+              </div>
+              <div style="text-align: center;">
+                مدير المدرسة:<br><br>
+                <strong>أ. عبدالله بن سعد</strong><br>
+                الختم والتوقيع: ..........................
+              </div>
+            </div>
+
+            <script>window.onload = function() { window.print(); }<\/script>
+          </body>
+          </html>
+        `);
+        win.document.close();
+      }
+    </script>
+
+    <!-- Section: Secondary Solutions -->
+    <div class="section-title">
+      <h2><i class="fa-solid fa-cubes"></i> أدوات مكملة مجهزة للميدان التعليمي</h2>
+      <p>أدوات سريعة لحل اختناقات النماذج اليومية والتقارير التنفيذية</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Card 1: SmartForms Enhancer -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-wand-magic-sparkles"></i> أداة SmartForms لتسريع النماذج</h4>
+        <p>إضافة متصفح ذكية مخصصة للكوادر التعليمية تقوم بتعبئة النماذج المتكررة وحفظ بيانات الاستمارات الطويلة مع منع فقدان البيانات في حال انقطاع الجلسة.</p>
+      </div>
+
+      <!-- Card 2: Student Achievement Tracker -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-award"></i> نظام متابعة الإنجاز والتعزيز (Injaz)</h4>
+        <p>روبوت ومنصة خفيفة لمتابعة تفوق الطلاب والواجبات وإرسال إشعارات التكريم والشهادات لأولياء الأمور عبر تليجرام وقنوات التواصل المدرسية.</p>
+      </div>
+
+      <!-- Card 3: Proposal & Event Builder -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-file-contract"></i> محرر الخطط والمبادرات المدرسية (Manara)</h4>
+        <p>أداة رقمية لصياغة مقترحات المبادرات المدرسية، الحملات التوعوية، وخطط النشاط الطلابي مع إمكانية التصدير الفوري كتقارير A4 مطبوعة عالية الفخامة.</p>
+      </div>
+
+      <!-- Card 4: Document Assembler -->
+      <div class="card-item">
+        <h4><i class="fa-solid fa-file-pdf"></i> مجمّع التقارير والأدلة التنظيمية</h4>
+        <p>محرك برمجي لدمج وتجميع السجلات الإرشادية المتفرقة وإضافة الأغلفة الرسمية والفهارس المعتمدة لتجهيز ملف التوجيه الكامل للاعتماد النهائي.</p>
+      </div>
+    </div>
+
+    <!-- Contact & Pitch Box -->
+    <div class="cta-box">
+      <h3>هل ترغب في أتمتة العمل الإرشادي والإداري بمدرستك؟</h3>
+      <p>نوفر خدمة تجهيز المنظومة كاملة، تخصيص القوالب بشعار مدرستكم، وتدريب الكادر الإرشادي خلال 24 ساعة فقط.</p>
+      <a href="https://wa.me/966500000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%20%D8%AD%D9%88%D9%84%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D8%A3%D8%AA%D9%85%D8%AA%D8%A9%20%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9" class="btn-main">
+        <i class="fa-brands fa-whatsapp"></i> بدء التواصل المباشر عبر واتساب
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    حقيبة حلول الأتمتة المدرسية والتوجيه الطلابي · مطور النظم: علي شرف الدين · البريد: projectorsali@gmail.com
+  </footer>
+
+</body>
+</html>
